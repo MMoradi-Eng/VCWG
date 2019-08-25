@@ -1,0 +1,123 @@
+# =================================================
+# Sample VCWG simulation initialization parameters
+# Mohsen Moradi and Amir A. Aliabadi
+# =================================================
+
+# =================================================
+# REQUIRED PARAMETERS
+# =================================================
+
+# Urban characteristics
+bldHeight,20,     # average building height [m]
+bldDensity,0.25,   # urban area building plan density (0-1)
+verToHor,0.875,     # urban area vertical to horizontal ratio
+h_mix,1,           # fraction of building HVAC waste heat set to the street canyon [as opposed to the roof]
+charLength,1000,  # dimension of a square that encompasses the whole neighborhood [aka. characteristic length] (m)
+albRoad,0.1,      # road albedo (0 - 1)
+albRoof,0.2,      # roof albedo (0 - 1)
+albRural,0.1,     # rural albedo (0 - 1)
+albWall,0.25,     # wall albedo (0 - 1)
+dRoad,0.5,        # road pavement thickness [m]
+kRoad,1,          # road pavement conductivity [W m^-1 K^-1]
+cRoad,1600000,    # road volumetric heat capacity [J m^-3 K^-1]
+sensAnth,20,      # non-building sensible heat at street level [aka. heat from cars, pedestrians, street cooking, etc. ] [W m^-2]
+latAnth,2,        # non-building latent heat [W m^-2] (currently not used)
+emisRoad,0.93,    # Emissivity of the road
+emisRoof,0.9,     # Emissivity of the roof
+emisWall,0.92,    # Emissivity of the wall
+emisVeg,0.96,     # Emissivity of the vegetation
+emisRur,0.93,     # Emissivity of the rural
+
+# Vegetation parameters
+vegCover,0.5,     # Fraction of the urban ground covered in grass/shrubs only (0-1)
+treeCoverage,0.1, # Fraction of the urban ground covered in trees (0-1)
+vegStart,4,       # The month in which vegetation starts to evapotranspire (leaves are out)
+vegEnd,10,        # The month in which vegetation stops evapotranspiring (leaves fall)
+albVeg,0.25,      # Vegetation albedo
+latGrss,0.4,      # Fraction of the heat absorbed by grass that is latent (goes to evaporating water)
+latTree,0.6,      # Fraction of the heat absorbed by trees that is latent (goes to evaporating water)
+rurVegCover,0.9,  # Fraction of the rural ground covered by vegetation
+
+# Traffic schedule [1 to 24 hour],
+SchTraffic,
+0.2,0.2,0.2,0.2,0.2,0.4,0.7,0.9,0.9,0.6,0.6,0.6,0.6,0.6,0.7,0.8,0.9,0.9,0.8,0.8,0.7,0.3,0.2,0.2, # Weekday
+0.2,0.2,0.2,0.2,0.2,0.3,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.6,0.7,0.7,0.7,0.7,0.5,0.4,0.3,0.2,0.2, # Saturday
+0.2,0.2,0.2,0.2,0.2,0.3,0.4,0.4,0.4,0.4,0.4,0.4,0.4,0.4,0.4,0.4,0.4,0.4,0.4,0.4,0.3,0.3,0.2,0.2, # Sunday
+
+# Fraction of building stock for each DOE Building type (pre-80's build, 80's-present build, new)
+# Note that sum(bld) must be equal to 1
+bld,
+0,0.2,0,    # FullServiceRestaurant
+0,0,0,    # Hospital
+0,0,0,    # LargeHotel
+0,0,0,  # LargeOffice
+0,0,0,    # MediumOffice
+0,0,0,  # MidRiseApartment
+0,0,0,    # OutPatient
+0,0,0,    # PrimarySchool
+0,0,0,    # QuickServiceRestaurant
+0,0,0,    # SecondarySchool
+0,0.1,0,    # SmallHotel
+0,0.7,0,    # SmallOffice
+0,0,0,    # Stand-aloneRetail
+0,0,0,    # StripMall
+0,0,0,    # SuperMarket
+0,0,0,    # Warehouse
+
+# =================================================
+# URBAN PARAMETERS
+# =================================================
+# If not provided, th are taken from corresponding DOE Reference building
+vegRoof,,  # Fraction of the roofs covered in grass/shrubs (0 - 1)
+glzR,,     # Glazing Ratio (0 - 1)
+hvac,,     # HVAC TYPE; 0 = Fully Conditioned (21C-24C); 1 = Mixed Mode Natural Ventilation (19C-29C + windows open >22C); 2 = Unconditioned (windows open >22C)
+
+# =================================================
+# OPTIONAL PARAMETERS FOR SIMULATION CONTROL,
+# =================================================
+
+# Simulation parameters,
+Month,8,        # starting month (1-12)
+Day,14,         # starting day (1-31)
+nDay,3,         # number of days to run simulation
+dtSim,10,       # simulation time step (s)
+dtWeather,3600, # weather time step (s)
+
+# HVAC system and internal loads
+autosize,0,     # autosize HVAC (1 for yes; 0 for no)
+sensOcc,100,    # Sensible heat per occupant (W)
+LatFOcc,0.3,    # Latent heat fraction from occupant (normally 0.3)
+RadFOcc,0.2,    # Radiant heat fraction from occupant (normally 0.2)
+RadFEquip,0.5,  # Radiant heat fraction from equipment (normally 0.5)
+RadFLight,0.7,  # Radiant heat fraction from light (normally 0.7)
+
+#Urban climate parameters
+h_ublavg,2000,  # average boundary layer height [m]; only affects gamma [K s^-1] in the formulation of temperature VDM
+h_ref,70,       # inversion height (m)
+h_temp,2,       # temperature height (m)
+h_wind,10,      # wind height (m)
+c_circ,1.2,     # circulation coefficient (default = 1.2 per Bruno (2012))
+c_exch,1,       # exchange coefficient (default = 1; ref Bruno (2014))
+maxDay,150,     # max day threshold (W/m^2)
+maxNight,20,    # max night threshold (W/m^2)
+windMin,1,      # min wind speed (m/s)
+h_obs,2,        # rural average obstacle height [m]
+
+# 1-D model parameters
+nz,50,                  # number of points (nz*dz = 5*bldHeight)
+nz_u,10,                # number of canopy levels in the vertical (nz_u*dz = bldHeight)
+dz,2,                   # vertical resolution
+wx,8,                   # distance between buildings at street level in the x direction [m]; must be equal to wy
+wy,8,                   # distance between buildings at street level in the y direction [m]; must be equal to wx
+Cbw,2,                  # fraction of building dimension and buildings distance (bx/wx or by/wy)
+theta_can,45,           # Canyon orientation [deg]
+prandtl,0.8,            # Turbulent Prandtl number
+schmidt,1,              # Turbulent Schmidt number
+HVAC_atm_frac,0.004,    # Fraction of sensible waste heat from building released into the atmosphere 0.008 (0.002 for h exploration and 0.009 for Cbw and LAD)
+HVAC_street_frac,0,     # Fraction of Sensible waste heat from building released into the atmosphere at street level
+LAD,                    # leaf area density profile [m2 m-3]
+0,2,3,4,5,6,7,8,9,10,11,12,13,14,                             # height [m]
+0.05,0,0,0.05,0.05,0.25,0.23,0.27,0.22,0.15,0.1,0.15,0.08,0.01,     # LAD [m2 m-3]
+h_tk,4,                 # Height of trunk [m]
+Ncloud,0,               # Fraction of sky covered by cloud
+LAI,1,                  # Leaf area index (LAI) [m^2 m^-2]
