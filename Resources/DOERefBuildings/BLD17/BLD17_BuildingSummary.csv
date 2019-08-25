@@ -1,0 +1,10 @@
+1,Building Summary Roz. Hall,,,,
+UWG,,,Value,Value,Value
+areaFloor,,Total Floor Area (m2),10100,10100,10100
+nFloor,,Number of Floors,3,3,3
+glazing,,Total Glazing,0.38,0.38,0.38
+hCeiling,,Floor to Ceiling Height (m),2.74,2.74,2.74
+areaWall,,Gross Dimensions - Total Area (m2),6000,6000,6000
+ver2hor,,Wall to Skin Ratio,0.765,0.765,0.765
+areaRoof,,Gross Dimensions - Total Area (m2),4500,4500,4500
+areaWindow,,Window Total,25,25,25
